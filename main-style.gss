@@ -1,0 +1,4 @@
+body {
+	width: ::window[width]/1.5;
+	background-color: #e6e6e6;
+}

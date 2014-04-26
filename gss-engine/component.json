@@ -1,0 +1,35 @@
+{
+  "name": "gss",
+  "repo": "the-gss/engine",
+  "description": "GSS runtime",
+  "version": "1.0.0beta",
+  "scripts": [
+    "lib/GSS-with-compiler.js",
+    "lib/GSS.js",
+    "lib/_.js",
+    "lib/EventTrigger.js",
+    "lib/dom/Query.js",
+    "lib/dom/View.js",
+    "lib/dom/Observer.js",
+    "lib/gssom/Node.js",
+    "lib/gssom/StyleSheet.js",
+    "lib/gssom/Rule.js",
+    "lib/Engine.js",
+    "lib/Commander.js",
+    "lib/Thread.js", 
+    "lib/dom/Getter.js",
+    "lib/dom/IdMixin.js",
+    "vendor/gl-matrix.js"
+  ],
+  "dependencies": {
+    "the-gss/compiler": "*",
+    "d4tocchini/customevent-polyfill": "*",
+    "slightlyoff/cassowary.js": "*"
+  },
+  "files": [
+    "vendor/observe.js",
+    "vendor/sidetable.js",
+    "vendor/MutationObserver.js"
+  ],
+  "main": "lib/GSS-with-compiler.js"
+}
