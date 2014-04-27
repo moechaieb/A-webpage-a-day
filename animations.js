@@ -1,3 +1,3 @@
 $(document).ready(function() {
-	$(".quote").fadeIn(3000);	
+	$("body").fadeIn(2000);	
 });
