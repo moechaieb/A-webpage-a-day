@@ -14,7 +14,7 @@
 			var paper = Raphael("first", 700, 220);
 			//ghost.attr("stroke-opacity", 0);
 			var circles = [[],[],[]];
-			var colors = [["#964457","#ad465e","#5278c5","#6355c7","#9958c9"],
+			var palette = [["#964457","#ad465e","#5278c5","#6355c7","#9958c9"],
 						  ["#58b153","#64bf5f","#cf7280","#d29275","#d4be78"],
 						  ["#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5"]];
 
@@ -25,7 +25,7 @@
 				for (var j = 0; j < 9; j++) {
 					paper.circle(125+225*i, 110, j*10+10)
 					.attr("stroke-width", j+1)
-					.attr("stroke", colors[i][j%5])
+					.attr("stroke", palette[i][j%5])
 					.attr("stroke-opacity", 0)
 					.hover(function() {
 							this.animate(hoverAnimation);
@@ -40,7 +40,7 @@
 			var paper = Raphael("second", 700, 700);
 
 			var hoverAnimation = Raphael.animation({"stroke-opacity": 1}, 250);
-			var colors = ["#964457","#ad465e","#5278c5","#6355c7","#9958c9",
+			var palette = ["#964457","#ad465e","#5278c5","#6355c7","#9958c9",
 						  "#58b153","#64bf5f","#cf7280","#d29275","#d4be78",
 						  "#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5",
 						  "#50853d","#589c3f","#bf406f","#c14e43","#c48946",
@@ -51,13 +51,41 @@
 				paper.path("M"+Math.floor(Math.random()*700)+" "+Math.floor(Math.random()*700)+"L"+
 				Math.floor(Math.random()*700)+" "+Math.floor(Math.random()*700))
 				.attr("stroke-width", Math.floor(Math.random()*8)+1)
-				.attr("stroke", colors[Math.floor(Math.random()*colors.length)])
+				.attr("stroke", palette[Math.floor(Math.random()*palette.length)])
 				.attr("stroke-opacity", 0)
 				.hover(function() {
 					this.animate(hoverAnimation);
 				});
 			};
 
+		</script>
+	</div>
+	<h2>Moving circles: click on a circle to send it to a random position.</h2>
+	<div class="design" id="third">
+		<script >
+			var paper = Raphael("third", 700, 700);
+			var circles = [];
+			var palette = ["#964457","#ad465e","#5278c5","#6355c7","#9958c9",
+						  "#58b153","#64bf5f","#cf7280","#d29275","#d4be78",
+						  "#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5",
+						  "#50853d","#589c3f","#bf406f","#c14e43","#c48946",
+						  "#9aa3d1","#a9b1dc","#e0f2da","#ddf4e1","#e1f5ee"];
+			//create the circles at random positions
+			for (var i = 0; i < 30; i++) {
+				paper.circle(Math.floor(Math.random()*620)+40, Math.floor(Math.random()*620)+40, Math.floor(Math.random()*20)+20)
+				.attr("stroke-width", 5)
+				.attr("stroke-opacity", 0)
+				.attr("stroke", "#fff")
+				.attr("fill", palette[Math.floor(Math.random()*palette.length)])
+				.click(function() {
+					this.animate(Raphael.animation({cx : Math.floor(Math.random()*620)+40, cy : Math.floor(Math.random()*620)+40}, Math.floor(Math.random()*400)+100));
+				})
+				.hover(function() {
+					this.animate(Raphael.animation({"stroke-opacity" : 1}, 100));
+				}, function () {
+					this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
+				});
+			};
 		</script>
 	</div>
 	<footer>Made with <a href="http://raphaeljs.com/">Raphael</a>, by <a href="http://themoechaieb.com">Mohamed Adam Chaieb</a> as part of the <a href="http://themoechaieb.com/A-webpage-a-day">'A webpage, a day' project</a>.</footer>
