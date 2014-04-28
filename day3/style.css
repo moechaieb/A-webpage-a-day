@@ -21,8 +21,10 @@ body {
 }
 
 footer {
+	display: block;
 	position: absolute;
 	bottom: 0;
+	background-color: #1a1a1a;
 	height: 40px;
 	width: 90%;
 	border-top: 1px solid white;
@@ -32,4 +34,20 @@ footer {
 
 footer a {
 	color: white;
+}
+
+.design {
+	display: block;
+	width: 100%;
+	margin: 10px 0 10px 0;
+}
+
+.design svg {
+	display: block;
+	margin: 0 auto 0 auto;
+}
+
+h2 {
+	font-weight: lighter;
+	padding-left: 30px;
 }

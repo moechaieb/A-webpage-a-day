@@ -29,12 +29,11 @@ h1 {
 }
 
 footer {
-	display: block;
 	position: absolute;
 	bottom: 0;
 	width: 70%;
-	height: 30px;
+	height: 40px;
 	border-top: 1px gray solid;
 	padding-left: 10px;
-	padding-top: 2px;
+	line-height: 40px;
 }

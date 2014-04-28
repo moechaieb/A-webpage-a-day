@@ -8,7 +8,38 @@
 	</head>
 	<body>
 	<h1 id='title'>Raphael Designs</h1>
+	<h2>Circles : move your mouse over the area below to reveal the circles.</h2>
+	<div class="design" id="first">
+		<script>
+			var paper = Raphael("first", 700, 220);
 
-	<footer>Made with <a href="http://raphaeljs.com/">Raphael</a>, by <a href="http://themoechaieb.com">Mohamed Adam Chaieb</a>.</footer>
+			var circles = [];
+			var colors = [["#964457","#ad465e","#5278c5","#6355c7","#9958c9"],
+						  ["#58b153","#64bf5f","#cf7280","#d29275","#d4be78"],
+						  ["#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5"]];
+
+			var hoverAnimation = Raphael.animation({"stroke-opacity": 1}, 250);
+
+			//create circles
+			for (var i = 0; i < 3; i++) {
+				for (var j = 0; j < 9; j++) {
+					paper.circle(125+225*i, 110, j*10+10)
+					.attr("stroke-width", j+1)
+					.attr("stroke", colors[i][j%5])
+					.attr("stroke-opacity", 0)
+					.hover(function() {
+						this.animate(hoverAnimation);
+					});
+				}
+			}
+		</script>
+	</div>
+	<h2></h2>
+	<div class="design" id="second">
+		<script >
+			
+		</script>
+	</div>
+	<footer>Made with <a href="http://raphaeljs.com/">Raphael</a>, by <a href="http://themoechaieb.com">Mohamed Adam Chaieb</a> as part of the <a href="http://themoechaieb.com/A-webpage-a-day">'A webpage, a day' project</a>.</footer>
 	</body>
 </html>
