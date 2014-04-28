@@ -4,7 +4,7 @@
 
 body {
 	width: 90%;
-	margin: 20px auto 0 auto;
+	margin: 1% auto 5% auto;
 	background-color: #1a1a1a;
 	font-family: "Source Sans Pro";
 	color: white;
@@ -22,7 +22,7 @@ body {
 
 footer {
 	display: block;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	background-color: #1a1a1a;
 	height: 40px;
@@ -39,7 +39,7 @@ footer a {
 .design {
 	display: block;
 	width: 100%;
-	margin: 10px 0 10px 0;
+	margin: 50px 0 50px 0;
 }
 
 .design svg {
