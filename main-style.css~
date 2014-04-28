@@ -28,12 +28,11 @@ h1 {
 	font-size: 18px;
 }
 
-footer {
+.masthead {
 	display: block;
 	position: absolute;
 	bottom: 0;
 	width: 70%;
-	height: 30px;
 	border-top: 1px gray solid;
 	padding-left: 10px;
 	padding-top: 2px;
