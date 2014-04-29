@@ -14,8 +14,12 @@ Made [my home page](http://themoechaieb.com) look a little nicer.
 
 ## Day 3
 
-Fooled around with [Raphael](http://raphaeljs.com/) a little bit. You can fin it [here](http://themoechaieb.com/A-webpage-a-day/day3/raphael.html).
+Fooled around with [Raphael](http://raphaeljs.com/) a little bit. You can find the webpage [here](http://themoechaieb.com/A-webpage-a-day/day3/raphael.html).
 
 ## Day 4
+
+Exploring the nice [Isomer](http://jdan.github.io/isomer/) library.
+
+## Day 5
 
 Coming tomorrow!
