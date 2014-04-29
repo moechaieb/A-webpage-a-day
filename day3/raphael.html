@@ -12,7 +12,6 @@
 	<div class="design" id="first">
 		<script>
 			var paper = Raphael("first", 700, 220);
-			//ghost.attr("stroke-opacity", 0);
 			var circles = [[],[],[]];
 			var palette = [["#964457","#ad465e","#5278c5","#6355c7","#9958c9"],
 						  ["#58b153","#64bf5f","#cf7280","#d29275","#d4be78"],
@@ -45,7 +44,6 @@
 						  "#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5",
 						  "#50853d","#589c3f","#bf406f","#c14e43","#c48946",
 						  "#9aa3d1","#a9b1dc","#e0f2da","#ddf4e1","#e1f5ee"];
-			var random = "";
 			//create random lines
 			for (var i = 0; i < 100; i++) {
 				paper.path("M"+Math.floor(Math.random()*700)+" "+Math.floor(Math.random()*700)+"L"+
@@ -86,6 +84,37 @@
 					this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
 				});
 			};
+		</script>
+	</div>
+	<h2>Random art</h2>
+	<div class="design" id="fourth">
+		<script>
+			var paper = Raphael("fourth", 700, 700);
+			var shapes = [];
+
+			var palette = ["#964457","#ad465e","#5278c5","#6355c7","#9958c9",
+						  "#58b153","#64bf5f","#cf7280","#d29275","#d4be78",
+						  "#4e56ab","#5760bb","#7dcd6a","#6dcf86","#70d1b5",
+						  "#50853d","#589c3f","#bf406f","#c14e43","#c48946",
+						  "#9aa3d1","#a9b1dc","#e0f2da","#ddf4e1","#e1f5ee"];
+			var selector = 0;
+			//create random shapes at random positions
+			for (var i = 0; i < 200; i++) {
+				selector = Math.floor(Math.random()*4);
+				if(selector == 0)
+					shapes[i] = paper.rect(Math.floor(Math.random()*570)+40, Math.floor(Math.random()*570)+40, Math.floor(Math.random()*40)+20, Math.floor(Math.random()*40)+20);
+				else if(selector == 1)
+					shapes[i] = paper.circle(Math.floor(Math.random()*570)+40, Math.floor(Math.random()*570)+40, Math.floor(Math.random()*40)+20);
+				else {
+					shapes[i] = paper.rect(Math.floor(Math.random()*570)+60, Math.floor(Math.random()*570)+40, Math.floor(Math.random()*20)+20, Math.floor(Math.random()*40)+20, Math.floor(Math.random()*10)+10);
+				}
+				shapes[i].attr("stroke-width", Math.floor(Math.random()*8)+1)
+				.attr("stroke", palette[Math.floor(Math.random()*palette.length)])
+				.attr("stroke-opacity", 0)
+				.hover(function() {
+					this.animate(Raphael.animation({"stroke-opacity": 1, "fill-opacity":1}, 250));
+				});
+			};  
 		</script>
 	</div>
 	<footer>Made with <a href="http://raphaeljs.com/">Raphael</a>, by <a href="http://themoechaieb.com">Mohamed Adam Chaieb</a> as part of the <a href="http://themoechaieb.com/A-webpage-a-day">'A webpage, a day' project</a>.</footer>
