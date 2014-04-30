@@ -2,7 +2,7 @@
 *	Designed and programmed by Mohamed Adam Chaieb.
 *****************************************************/
 
-function GraphicManager() {
+function GraphicsManager() {
 	// Some convenient renames and constants
 	var Point = Isomer.Point;
 	var Path = Isomer.Path;
@@ -38,8 +38,8 @@ function GraphicManager() {
 	};
 
 	this.drawTiles = function(grid) {
-		console.log(grid);
-		//this.iso = new Isomer(document.getElementById("game"));
+		this.iso.canvas.clear();
+		this.drawBoard();
 		for (var i = gridSize - 1; i >= 0; i--) {
 			for (var j = gridSize - 1; j >= 0; j--) {
 				if(grid.grid[i][j])
@@ -47,4 +47,47 @@ function GraphicManager() {
 			};
 		};
 	};
+
+	this.updateTiles = function(grid) {
+		for (var i = gridSize - 1; i >= 0; i--) {
+			for (var j = gridSize - 1; j >= 0; j--) {
+				if(grid.previousState[i][j])
+					this.translateTile(grid.previousState[i][j], grid.previousState[i][j].nextX, grid.previousState[i][j].nextY);
+			};
+		};
+	};
+
+	//dynamically moves a tiles from positions (x,y) to positions (newX, newY)
+	this.translateTiles = function(tiles,newXs,newYs) {
+		var self = this;
+		var dxs = [];
+		var dys = [];
+		var tile3Ds = [];
+		for (var i = 0; i < tiles.length; i++) {
+			tile3Ds[i] = this.makeTile3D(tiles[i]);
+			dxs[i] = 0;
+			dys[i] = 0;
+		};
+		var id = setInterval(function() {
+			self.iso.canvas.clear();
+			self.drawBoard();
+			for (var i = 0; i < tiles.length; i++) {
+				self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[tiles[i].level]);
+				dxs[i] += (newXs[i]-tiles[i].x)/20;
+				dys[i] += (newYs[i]-tiles[i].y)/20;
+			};
+			console.log("Moving");
+			if(allArrived(dxs,dys,newXs,newYs, tiles))
+				clearInterval(id);
+		}, 1);
+	};
+
+	function allArrived(dxs,dys,newXs,newYs, tiles) {
+		for (var i = 0; i < dxs.length; i++) {
+			if(!(Math.abs(dxs[i]) >= Math.abs(newXs[i]-tiles[i].x)*squareSide 
+				&& Math.abs(dys[i]) >= Math.abs(newYs[i]-tiles[i].y)*squareSide))
+				return false;
+		};
+		return true;
+	}
 };
