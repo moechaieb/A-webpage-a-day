@@ -21,6 +21,7 @@ header {
 	background-color: #ffc40d;
 	font-size: 3em;
 	font-weight: bold;
+	border-bottom: 10px solid #222;
 }
 
 h1 {

@@ -10,6 +10,7 @@ function GraphicManager() {
 	var Color = Isomer.Color;
 	//some constants
 	var squareSide = 3;
+	var gridSize = 4;
 	var thickness = 0.25;
 	var boardcolors = [new Color(32,32,32), new Color(0,0,0)];
 	var progression = [new Color(226,208,169), new Color(247,223,177), new Color(228,125,173), new Color(111,125,173),
@@ -28,6 +29,21 @@ function GraphicManager() {
 					Point(i*squareSide+squareSide, j*squareSide, 0),
 					Point(i*squareSide+squareSide, j*squareSide+squareSide, 0),
 					Point(i*squareSide, j*squareSide+squareSide, 0)]), boardcolors[(i+j)%2]);
+			};
+		};
+	};
+
+	this.makeTile3D = function(tile) {
+		return Shape.Prism(Point(tile.x*squareSide,tile.y*squareSide), squareSide, squareSide, thickness);
+	};
+
+	this.drawTiles = function(grid) {
+		console.log(grid);
+		//this.iso = new Isomer(document.getElementById("game"));
+		for (var i = gridSize - 1; i >= 0; i--) {
+			for (var j = gridSize - 1; j >= 0; j--) {
+				if(grid.grid[i][j])
+					this.iso.add(this.makeTile3D(grid.grid[i][j]),progression[grid.grid[i][j].level]);
 			};
 		};
 	};

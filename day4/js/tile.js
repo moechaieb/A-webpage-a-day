@@ -3,8 +3,8 @@
 *****************************************************/
 
 //constructor for tiles
-function Tile(x, y, level) {
-	this.x = x;
-	this.y = y;
-	this.level = level;
+function Tile(posX, posY, lvl) {
+	this.x = posX;
+	this.y = posY;
+	this.level = lvl;
 };
