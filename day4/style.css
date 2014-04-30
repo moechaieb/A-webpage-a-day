@@ -5,15 +5,15 @@
 body {
 	font-family: 'Source Sans Pro';
 	width: 100%;
-	margin: 0 0 20px 0;
+	margin: 0 0 50px 0;
 	background-color: #a1cee0;
 	display: block;
 }
 
 header, h1 , h2, p {
-	width: 80%;
+	width: 70%;
 	margin:0 auto 0 auto;
-	padding: 10px 10% 10px 10%;
+	padding: 5px 15% 5px 15%;
 	display: block;
 }
 
@@ -34,9 +34,9 @@ footer {
 	display: block;
 	position: fixed;
 	bottom: 0;
-	left: 10%;
+	left: 15%;
 	height: 40px;
-	width: 80%;
+	width: 70%;
 	border-top: 1px solid #222;
 	padding-left: 5px;
 	line-height: 40px;
@@ -46,9 +46,9 @@ footer a {
 	color: #222;
 }
 
-#art {
+#game {
 	margin: 0 auto 0 auto;
 	display: block;
-	width: 700px;
-	height: 700px;
+	width: 800px;
+	height: 550px;
 }
