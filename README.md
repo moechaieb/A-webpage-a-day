@@ -16,10 +16,12 @@ Made [my home page](http://themoechaieb.com) look a little nicer.
 
 Fooled around with [Raphael](http://raphaeljs.com/) a little bit. You can find the webpage [here](http://themoechaieb.com/A-webpage-a-day/day3/raphael.html).
 
-## Day 4
+## Days 4,5,6
 
-Exploring the nice [Isomer](http://jdan.github.io/isomer/) library.
+Exploring the nice [Isomer](http://jdan.github.io/isomer/) library. Decided to build a remake of the 2048, with Isometric graphics: find it at http://themoechaieb.com/A-webpage-a-day/day4/index.html.
 
-## Day 5
+Probably gonna move it to its own repo soon. It's getting real.
+
+## Day 7
 
 Coming tomorrow!
