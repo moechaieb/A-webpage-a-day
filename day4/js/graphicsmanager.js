@@ -40,11 +40,9 @@ function GraphicsManager() {
 	this.drawTiles = function(grid) {
 		this.iso.canvas.clear();
 		this.drawBoard();
-		for (var i = gridSize - 1; i >= 0; i--) {
-			for (var j = gridSize - 1; j >= 0; j--) {
-				if(grid.grid[i][j])
-					this.iso.add(this.makeTile3D(grid.grid[i][j]),progression[grid.grid[i][j].level]);
-			};
+		for (var i = grid.tiles.length-1 ; i >= 0 ; i--) {
+			if(grid.tiles[i])
+				this.iso.add(this.makeTile3D(grid.tiles[i]),progression[grid.tiles[i].level]);
 		};
 	};
 
@@ -60,8 +58,8 @@ function GraphicsManager() {
 				newYs.push(grid.moveMap[i].newY);
 			};
 		};
+		//this.drawTiles(grid);
 		this.translateTiles(gridCells, newXs, newYs);
-		this.drawTiles(grid);
 	};
 
 	// ISSUE seems to stop animation a little too early

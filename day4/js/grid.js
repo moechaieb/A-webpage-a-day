@@ -4,15 +4,12 @@
 
 function Grid() {
 	var gridSize = 4;
-	this.grid = [[null,null,null,null],
-				[null,null,null,null],
-				[null,null,null,null],
-				[null,null,null,null]];
 	this.moveMap = [];
 	this.free = [];
+	this.tiles = [];
 	//initialize free array
 	for (var i = 0; i < gridSize*gridSize; i++) {
-		this.free[i] = {x: Math.floor(i/gridSize), y:i%gridSize};
+		this.free[i] = {x: i%gridSize, y: Math.floor(i/gridSize)};
 	};
 
 	//returns a random position and updates the free position array
@@ -23,75 +20,61 @@ function Grid() {
 		return elem;
 	};
 
-	this.getMovePosition = function(posX, posY, dir) {
+	this.init = function() {
+		//add two tiles at random positions
+		var pos = this.getRandomPosition();
+		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
+		pos = this.getRandomPosition();
+		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
+	};
+
+	this.getMovePosition = function(pos, dir) {
 		var cntr = 0;
 		switch(dir) {
 			case 0 : //case up
-				for (var i = posY+1; i < gridSize; i++) {
-					if(this.grid[posX][i] == null)
+				for (var i = pos+4; i < gridSize*gridSize; i+=4) {
+					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return {x:posX, y:posY+cntr};
+				return pos+cntr*4;
 				break;
 			case 1 : //case right
-				for (var i = posX+1; i < gridSize; i++) {
-					if(this.grid[i][posY] == null)
+				for (var i = pos+1; i < gridSize*gridSize; i++) {
+					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return {x:posX+cntr, y:posY};
+				return pos+cntr;;
 				break;
 			case 2 : //case down
-				for (var i = posY-1; i >= 0; i--) {
-					if(this.grid[posX][i] == null)
+				for (var i = pos-4; i >= 0; i-=4) {
+					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return {x:posX, y:posY-cntr};
+				return pos - 4*cntr;
 				break;
 			case 3 : //case left
-				for (var i = posX-1; i >= 0; i--) {
-					if(this.grid[i][posY] == null)
+				for (var i = pos-1; i >= 0; i--) {
+					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return {x:posX-cntr, y:posY};
+				return pos-cntr;;
 				break;
 		}
 	}
 
-	//add two tiles at random positions
-	var pos = this.getRandomPosition();
-	this.grid[pos.x][pos.y] = new Tile(pos.x,pos.y,0);
-	pos = this.getRandomPosition();
-	this.grid[pos.x][pos.y] = new Tile(pos.x,pos.y,0);
-
-	/*
-		ISSUE: STATE DOESNT SEEM TO PERSIST, AFTER CALLING UPDATE,
-		MOVEMAP KEEPS HAVING MOVEMENT VECTORS GENERATED FROM PREVIOUS
-		STATES. GETS STUCK ON THE FIRST GRID STATE.
-		
-	*/
+	// returns a new grid with an updated state
 	this.update = function(dir) {
 		var newPos;
 		var tmp;
-		//keeps track of iterations
-		var newMap = [[false,false,false,false],
-					  [false,false,false,false],
-					  [false,false,false,false],
-					  [false,false,false,false]];
-		this.moveMap = [];
+		var update = new Grid();
 		switch(dir) {
 			case 0: //up
-				for (var i = gridSize-1; i >= 0; i--) {
-					for (var j = gridSize - 1; j >= 0; j--) {
-						if(this.grid[j][i] && !newMap[j][i]) {
-							newPos = this.getMovePosition(j,i,dir);
-							this.moveMap.push({tile: this.grid[j][i], newX: newPos.x, newY: newPos.y});
-							//moving the tile here
-							tmp = this.grid[j][i];
-							this.grid[j][i] = null;
-							this.grid[newPos.x][newPos.y] = tmp;
-							//--------------------
-							newMap[newPos.x][newPos.y] = true;
-						}
+				for (var i = this.tiles.length; i >= 0; i--) {
+					if(this.tiles[i]) {
+						newPos = this.getMovePosition(i,dir);
+						update.moveMap.push({tile: this.tiles[i], newX: newPos%gridSize, newY: Math.floor(newPos/gridSize)});
+						//moving the tile here
+						update.tiles[newPos] = this.tiles[i];
 					};
 				};
 				break;
@@ -102,6 +85,14 @@ function Grid() {
 			case 3: //down
 				break;
 		};
+		//update the free block vector
+		for (var i = 0; i < gridSize; i++) {
+			if(update.tiles[i] == null)
+				update.free.splice(i,1);
+		};
+		console.log(update.tiles);
+		console.log(update.moveMap);
+		return update;
 		//add a random tile for next turn
 		// newPos = getRandomPosition();
 		// var randomTile = this.grid[newPos.x][newPos.y] = new Tile(newPos.x,newPos.y,0);
