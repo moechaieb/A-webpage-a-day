@@ -47,6 +47,10 @@ footer a {
 	color: #222;
 }
 
+sub {
+	font-size: 20px;
+}
+
 #game {
 	margin: 0 auto 0 auto;
 	display: block;

@@ -8,14 +8,18 @@ function Grid() {
 				[null,null,null,null],
 				[null,null,null,null],
 				[null,null,null,null]];
-	this.previousState = [[],[],[],[]];
-	var free = [];
+	this.moveMap = [];
+	this.free = [];
+	//initialize free array
+	for (var i = 0; i < gridSize*gridSize; i++) {
+		this.free[i] = {x: Math.floor(i/gridSize), y:i%gridSize};
+	};
 
 	//returns a random position and updates the free position array
-	var getRandomPosition = function() {
-		var rnd = Math.floor(Math.random()*free.length);
-		var elem = free[rnd];
-		free.splice(rnd, 1);
+	this.getRandomPosition = function() {
+		var rnd = Math.floor(Math.random()*(this.free.length));
+		var elem = this.free[rnd];
+		this.free.splice(rnd, 1);
 		return elem;
 	};
 
@@ -53,42 +57,48 @@ function Grid() {
 		}
 	}
 
-	//initialize free array
-	for (var i = 0; i < gridSize*gridSize; i++) {
-		free[i] = {x: Math.floor(i/gridSize), y:i%gridSize};
-	};
 	//add two tiles at random positions
-	//var pos = getRandomPosition();
-	this.grid[0][0] = new Tile(0,0,0);
-	//pos = getRandomPosition();
-	this.grid[3][0] = new Tile(3,0,0);
+	var pos = this.getRandomPosition();
+	this.grid[pos.x][pos.y] = new Tile(pos.x,pos.y,0);
+	pos = this.getRandomPosition();
+	this.grid[pos.x][pos.y] = new Tile(pos.x,pos.y,0);
 
-	// moves the tile at the (x,y) position to (newX,newY)
-	this.moveTile = function(x,y, newX, newY) {
-		this.grid[newX][newY] = this.previousState[x][y];
-		this.previousState[x][y].nextX = newX;
-		this.previousState[x][y].nextY = newY;
-	}
-
-	this.updateState = function(dir) {
+	this.update = function(dir) {
 		var newPos;
 		var tmp;
-		this.previousState = this.grid;
-		this.grid =  [[null,null,null,null],
-					 [null,null,null,null],
-					 [null,null,null,null],
-					 [null,null,null,null]];
-		for (var i = 0; i < gridSize; i++) {
-			for (var j = 0; j < gridSize; j++) {
-				if(this.previousState[i][j] != null) {
-					newPos = this.getMovePosition(i, j, dir);
-					this.moveTile(i,j, newPos.x, newPos.y);				
-				}
-			};
+		//keeps track of iterations
+		var newMap = [[false,false,false,false],
+					  [false,false,false,false],
+					  [false,false,false,false],
+					  [false,false,false,false]];
+		this.moveMap = [];
+		switch(dir) {
+			case 0: //up
+				for (var i = gridSize-1; i >= 0; i--) {
+					for (var j = gridSize - 1; j >= 0; j--) {
+						if(this.grid[j][i] && !newMap[j][i]) {
+							newPos = this.getMovePosition(j,i,dir);
+							this.moveMap.push({tile: this.grid[j][i], newX: newPos.x, newY: newPos.y});
+							//moving the tile here
+							tmp = this.grid[j][i];
+							this.grid[j][i] = null;
+							this.grid[newPos.x][newPos.y] = tmp;
+							//--------------------
+							newMap[newPos.x][newPos.y] = true;
+						}
+					};
+				};
+				break;
+			case 1: //right
+				break;
+			case 2: //left
+				break;
+			case 3: //down
+				break;
 		};
 		//add a random tile for next turn
-		newPos = getRandomPosition();
-		var randomTile = this.grid[newPos.x][newPos.y] = new Tile(newPos.x,newPos.y,0);
-		this.grid[randomTile.x][randomTile.y] = randomTile;
+		// newPos = getRandomPosition();
+		// var randomTile = this.grid[newPos.x][newPos.y] = new Tile(newPos.x,newPos.y,0);
+		// this.grid[randomTile.x][randomTile.y] = randomTile;
 	}
 };

@@ -11,7 +11,7 @@ function GraphicsManager() {
 	//some constants
 	var squareSide = 3;
 	var gridSize = 4;
-	var thickness = 0.25;
+	var thickness = 0.15;
 	var boardcolors = [new Color(32,32,32), new Color(0,0,0)];
 	var progression = [new Color(226,208,169), new Color(247,223,177), new Color(228,125,173), new Color(111,125,173),
 				   	   new Color(111,225,118), new Color(179,238,93), new Color(95,241,124), new Color(0,249,138),
@@ -48,13 +48,19 @@ function GraphicsManager() {
 		};
 	};
 
+	//constructs movement arrays and calls translation function
 	this.updateTiles = function(grid) {
+		var gridCells = [];
+		var newXs = [];
+		var newYs = [];
 		for (var i = gridSize - 1; i >= 0; i--) {
-			for (var j = gridSize - 1; j >= 0; j--) {
-				if(grid.previousState[i][j])
-					this.translateTile(grid.previousState[i][j], grid.previousState[i][j].nextX, grid.previousState[i][j].nextY);
+			if(grid.moveMap[i]) {
+				gridCells.push(grid.moveMap[i].tile);
+				newXs.push(grid.moveMap[i].newX);
+				newYs.push(grid.moveMap[i].newY);
 			};
 		};
+		this.translateTiles(gridCells, newXs, newYs);
 	};
 
 	//dynamically moves a tiles from positions (x,y) to positions (newX, newY)
@@ -76,7 +82,6 @@ function GraphicsManager() {
 				dxs[i] += (newXs[i]-tiles[i].x)/20;
 				dys[i] += (newYs[i]-tiles[i].y)/20;
 			};
-			console.log("Moving");
 			if(allArrived(dxs,dys,newXs,newYs, tiles))
 				clearInterval(id);
 		}, 1);
