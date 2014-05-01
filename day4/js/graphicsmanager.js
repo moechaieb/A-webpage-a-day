@@ -61,9 +61,11 @@ function GraphicsManager() {
 			};
 		};
 		this.translateTiles(gridCells, newXs, newYs);
+		this.drawTiles(grid);
 	};
 
-	//dynamically moves a tiles from positions (x,y) to positions (newX, newY)
+	// ISSUE seems to stop animation a little too early
+	// dynamically moves a tiles from positions (x,y) to positions (newX, newY)
 	this.translateTiles = function(tiles,newXs,newYs) {
 		var self = this;
 		var dxs = [];
@@ -79,18 +81,21 @@ function GraphicsManager() {
 			self.drawBoard();
 			for (var i = 0; i < tiles.length; i++) {
 				self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[tiles[i].level]);
-				dxs[i] += (newXs[i]-tiles[i].x)/20;
-				dys[i] += (newYs[i]-tiles[i].y)/20;
+				dxs[i] += (newXs[i]-tiles[i].x)/5;
+				dys[i] += (newYs[i]-tiles[i].y)/5;
 			};
 			if(allArrived(dxs,dys,newXs,newYs, tiles))
+			{
+				//redraw the tiles properly
 				clearInterval(id);
-		}, 1);
+			}
+		}, 2);
 	};
 
 	function allArrived(dxs,dys,newXs,newYs, tiles) {
 		for (var i = 0; i < dxs.length; i++) {
-			if(!(Math.abs(dxs[i]) >= Math.abs(newXs[i]-tiles[i].x)*squareSide 
-				&& Math.abs(dys[i]) >= Math.abs(newYs[i]-tiles[i].y)*squareSide))
+			if((Math.abs(dxs[i]) < Math.abs(newXs[i]-tiles[i].x)*squareSide 
+				|| Math.abs(dys[i]) < Math.abs(newYs[i]-tiles[i].y)*squareSide))
 				return false;
 		};
 		return true;

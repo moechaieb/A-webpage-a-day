@@ -63,6 +63,12 @@ function Grid() {
 	pos = this.getRandomPosition();
 	this.grid[pos.x][pos.y] = new Tile(pos.x,pos.y,0);
 
+	/*
+		ISSUE: STATE DOESNT SEEM TO PERSIST, AFTER CALLING UPDATE,
+		MOVEMAP KEEPS HAVING MOVEMENT VECTORS GENERATED FROM PREVIOUS
+		STATES. GETS STUCK ON THE FIRST GRID STATE.
+		
+	*/
 	this.update = function(dir) {
 		var newPos;
 		var tmp;
