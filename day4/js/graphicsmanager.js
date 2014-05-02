@@ -53,7 +53,7 @@ function GraphicsManager() {
 		var newYs = [];
 		for (var i = 0; i < grid.moveMap.length; i++) {
 			if(grid.moveMap[i]) {
-				gridCells.push(grid.moveMap[i].tile);
+				gridCells.push({index: grid.moveMap[i].oldPos, lvl : grid.moveMap[i].level});
 				newXs.push(grid.moveMap[i].newPos%gridSize);
 				newYs.push(Math.floor(grid.moveMap[i].newPos/gridSize));
 			};
@@ -61,34 +61,30 @@ function GraphicsManager() {
 		this.translateTiles(gridCells, newXs, newYs);
 	};
 
-	// ISSUE seems to stop animation a little too early
 	// dynamically moves a tiles from positions (x,y) to positions (newX, newY)
 	this.translateTiles = function(tiles,newXs,newYs) {
 		var self = this;
 		var dxs = [];
 		var dys = [];
 		var tile3Ds = [];
-		var refreshes = 12;
+		var refreshes = 8;
 		var c = 0;
 		for (var i = 0; i < tiles.length; i++) {
-			tile3Ds[i] = this.makeTile3D(tiles[i]);
+			tile3Ds[i] = this.makeTile3D({x: tiles[i].index%gridSize, y: Math.floor(tiles[i].index/gridSize)});
 			dxs[i] = 0;
 			dys[i] = 0;
 		};
 		var id = setInterval(function() {
 			self.iso.canvas.clear();
 			self.drawBoard();
-			console.log("YOLO it's working!");
 			for (var i = 0; i < tiles.length; i++) {
-				self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[tiles[i].level]);
-				dxs[i] += (newXs[i]-tiles[i].x)/refreshes;
-				dys[i] += (newYs[i]-tiles[i].y)/refreshes;
+				self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[tiles[i].lvl]);
+				dxs[i] += (newXs[i]-(tiles[i].index%gridSize))/refreshes;
+				dys[i] += (newYs[i]-(Math.floor(tiles[i].index/gridSize)))/refreshes;
 			};
-			c++;
-			if(c == refreshes*3 + 1) {
-				//redraw the tiles properly
+			if(c == refreshes*3)
 				clearInterval(id);
-			}
+			c++;
 		}, 1);
 	};
 };
