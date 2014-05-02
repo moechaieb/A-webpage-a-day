@@ -13,7 +13,7 @@ function GraphicsManager() {
 	var gridSize = 4;
 	var thickness = 0.15;
 	var boardcolors = [new Color(32,32,32), new Color(0,0,0)];
-	var progression = [new Color(226,208,169), new Color(247,223,177), new Color(228,125,173), new Color(111,125,173),
+	var progression = [new Color(226,208,169), new Color(120,223,177), new Color(228,125,173), new Color(111,125,173),
 				   	   new Color(111,225,118), new Color(179,238,93), new Color(95,241,124), new Color(0,249,138),
 				       new Color(0,249,255), new Color(208,21,139), new Color(95,241,9)];
 
@@ -67,7 +67,7 @@ function GraphicsManager() {
 		var dxs = [];
 		var dys = [];
 		var tile3Ds = [];
-		var refreshes = 8;
+		var refreshes = 3;
 		var c = 0;
 		for (var i = 0; i < tiles.length; i++) {
 			tile3Ds[i] = this.makeTile3D({x: tiles[i].index%gridSize, y: Math.floor(tiles[i].index/gridSize)});

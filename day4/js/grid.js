@@ -7,33 +7,51 @@ function Grid() {
 	this.moveMap = [];
 	this.free = [];
 	this.tiles = [];
+	this.previousState = [];
 	//initialize free array
 	for (var i = 0; i < gridSize*gridSize; i++) {
-		this.free[i] = {x: i%gridSize, y: Math.floor(i/gridSize)};
+		this.free[i] = true;
 	};
+
+	this.refreshFree = function() {
+		for (var i = 0; i < this.free.length; i++) {
+			this.free[i] = true;
+			if(this.tiles[i])
+				this.free[i] = false;
+		};
+	}
 
 	//returns a random position and updates the free position array
 	this.getRandomPosition = function() {
-		var rnd = Math.floor(Math.random()*(this.free.length));
-		var elem = this.free[rnd];
-		this.free.splice(rnd, 1);
-		return elem;
+		var coin = Math.floor(Math.random()*2);
+		var c = 0;
+		if(coin == 1) {
+			for (var i = gridSize*gridSize-1; i >= 0 ; i--) {
+				if(this.free[i]) {
+					c = i;
+					break;
+				}
+			};
+		} else {
+			for (var i = 0; i < gridSize*gridSize ; i++) {
+				if(this.free[i]) {
+					c = i;
+					break;
+				}
+			};
+		}
+		this.free[c] = false;
+		return c;
 	};
 
 	this.init = function() {
 		//add two tiles at random positions
+		var lvl = Math.floor(Math.random()*2);
 		var pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
+		this.tiles[pos] = new Tile(pos%gridSize, Math.floor(pos/gridSize), lvl);
 		pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
-		pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
-		pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
-		pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
-		pos = this.getRandomPosition();
-		this.tiles[pos.x+4*pos.y] = new Tile(pos.x, pos.y, 0);
+		lvl = Math.floor(Math.random()*2);
+		this.tiles[pos] = new Tile(pos%gridSize, Math.floor(pos/gridSize), lvl);
 	};
 
 	this.getMovePosition = function(pos, dir) {
@@ -85,16 +103,23 @@ function Grid() {
 				this.moveMap.push({oldPos: i, newPos: newPos, level: this.tiles[i].level});
 			};
 		};
+		this.previousState = this.tiles;
 		this.tiles = update;
-		//update the free block vector
-		for (var i = 0; i < gridSize*gridSize; i++) {
-			this.free[i] = {x: i%gridSize, y: Math.floor(i/gridSize)};
-			if(this.tiles[i] != null)
-				this.free.splice(i,1);
+		this.refreshFree();
+		//add a random tile for next turn if state changed
+		if(!arrayEquals(this.tiles, this.previousState)) {
+			newPos = this.getRandomPosition();
+			var lvl = Math.floor(Math.random()*2);
+			this.tiles[newPos] = new Tile(newPos%gridSize, Math.floor(newPos/gridSize), lvl);
 		};
-		//add a random tile for next turn
-		newPos = this.getRandomPosition();
-		// var randomTile new Tile(newPos.x,newPos.y,0);
-		// this.grid[randomTile.x][randomTile.y] = randomTile;
+	}
+
+	//helper method, checks if two grid states are identical
+	var arrayEquals = function(a1, a2) {
+		for(var i = 0; i<a1.length;i++) {
+			if((a1[i] == null && a2[i] != null) || ((a2[i] == null && a1[i] != null)))
+				return false;
+		};
+		return true;
 	}
 };
