@@ -39,11 +39,12 @@ function Grid() {
 				return pos+cntr*4;
 				break;
 			case 1 : //case right
-				for (var i = pos+1; i < gridSize*gridSize; i++) {
+				console.log("Scanning between "+(pos+1)+" and "+Math.ceil(pos/gridSize)*gridSize)
+				for (var i = pos+1; i < Math.ceil(pos/gridSize)*gridSize-1; i++) {
 					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return pos+cntr;;
+				return pos+cntr;
 				break;
 			case 2 : //case down
 				for (var i = pos-4; i >= 0; i-=4) {
@@ -53,11 +54,12 @@ function Grid() {
 				return pos - 4*cntr;
 				break;
 			case 3 : //case left
-				for (var i = pos-1; i >= 0; i--) {
+				console.log("Scanning between "+(pos-1)+" and "+Math.floor(pos/gridSize)*gridSize)
+				for (var i = pos-1; i >= Math.floor(pos/gridSize)*gridSize; i--) {
 					if(this.tiles[i] == null)
 						cntr++;
 				};
-				return pos-cntr;;
+				return pos-cntr;
 				break;
 		}
 	}
@@ -66,33 +68,26 @@ function Grid() {
 	this.update = function(dir) {
 		var newPos;
 		var tmp;
-		var update = new Grid();
-		switch(dir) {
-			case 0: //up
-				for (var i = this.tiles.length; i >= 0; i--) {
-					if(this.tiles[i]) {
-						newPos = this.getMovePosition(i,dir);
-						update.moveMap.push({tile: this.tiles[i], newX: newPos%gridSize, newY: Math.floor(newPos/gridSize)});
-						//moving the tile here
-						update.tiles[newPos] = this.tiles[i];
-					};
-				};
-				break;
-			case 1: //right
-				break;
-			case 2: //left
-				break;
-			case 3: //down
-				break;
+		var update = [];
+		this.moveMap = [];
+		for (var i = this.tiles.length; i >= 0; i--) {
+			if(this.tiles[i]) {
+				newPos = this.getMovePosition(i,dir);
+				//moving the tile here
+				update[newPos] = this.tiles[i];
+				//////////////////////
+				this.moveMap.push({tile: update[newPos], newPos: newPos});
+			};
 		};
+		this.tiles = update;
 		//update the free block vector
-		for (var i = 0; i < gridSize; i++) {
-			if(update.tiles[i] == null)
-				update.free.splice(i,1);
+		for (var i = 0; i < gridSize*gridSize; i++) {
+			this.free[i] = {x: i%gridSize, y: Math.floor(i/gridSize)};
+			if(this.tiles[i] == null)
+				this.free.splice(i,1);
 		};
-		console.log(update.tiles);
-		console.log(update.moveMap);
-		return update;
+		console.log(this.tiles);
+		console.log(this.moveMap);
 		//add a random tile for next turn
 		// newPos = getRandomPosition();
 		// var randomTile = this.grid[newPos.x][newPos.y] = new Tile(newPos.x,newPos.y,0);

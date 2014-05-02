@@ -9,9 +9,9 @@ function KeyManager(g, grid) {
 	var self = this;
 
 	this.trigger = function(n) {
-		this.gameGrid = this.gameGrid.update(n);
+		this.gameGrid.update(n);
 		//console(this.gameGrid.tiles);
-		//this.graphicsManager.updateTiles(this.gameGrid);
+		this.graphicsManager.updateTiles(this.gameGrid);
 		//this.graphicsManager.drawTiles(this.gameGrid);
 		//console.log("Re-drew the grid");
 	};

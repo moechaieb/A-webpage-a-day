@@ -51,14 +51,13 @@ function GraphicsManager() {
 		var gridCells = [];
 		var newXs = [];
 		var newYs = [];
-		for (var i = gridSize - 1; i >= 0; i--) {
+		for (var i = 0; i < grid.moveMap.length; i++) {
 			if(grid.moveMap[i]) {
 				gridCells.push(grid.moveMap[i].tile);
-				newXs.push(grid.moveMap[i].newX);
-				newYs.push(grid.moveMap[i].newY);
+				newXs.push(grid.moveMap[i].newPos%gridSize);
+				newYs.push(Math.floor(grid.moveMap[i].newPos/gridSize));
 			};
 		};
-		//this.drawTiles(grid);
 		this.translateTiles(gridCells, newXs, newYs);
 	};
 
@@ -69,6 +68,8 @@ function GraphicsManager() {
 		var dxs = [];
 		var dys = [];
 		var tile3Ds = [];
+		var refreshes = 12;
+		var c = 0;
 		for (var i = 0; i < tiles.length; i++) {
 			tile3Ds[i] = this.makeTile3D(tiles[i]);
 			dxs[i] = 0;
@@ -77,25 +78,17 @@ function GraphicsManager() {
 		var id = setInterval(function() {
 			self.iso.canvas.clear();
 			self.drawBoard();
+			console.log("YOLO it's working!");
 			for (var i = 0; i < tiles.length; i++) {
 				self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[tiles[i].level]);
-				dxs[i] += (newXs[i]-tiles[i].x)/5;
-				dys[i] += (newYs[i]-tiles[i].y)/5;
+				dxs[i] += (newXs[i]-tiles[i].x)/refreshes;
+				dys[i] += (newYs[i]-tiles[i].y)/refreshes;
 			};
-			if(allArrived(dxs,dys,newXs,newYs, tiles))
-			{
+			c++;
+			if(c == refreshes*3 + 1) {
 				//redraw the tiles properly
 				clearInterval(id);
 			}
-		}, 2);
+		}, 1);
 	};
-
-	function allArrived(dxs,dys,newXs,newYs, tiles) {
-		for (var i = 0; i < dxs.length; i++) {
-			if((Math.abs(dxs[i]) < Math.abs(newXs[i]-tiles[i].x)*squareSide 
-				|| Math.abs(dys[i]) < Math.abs(newYs[i]-tiles[i].y)*squareSide))
-				return false;
-		};
-		return true;
-	}
 };
