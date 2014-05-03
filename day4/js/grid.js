@@ -8,6 +8,7 @@ function Grid() {
 	this.free = [];
 	this.tiles = [];
 	this.previousState = [];
+	this.newTile = null;
 	//initialize free array
 	for (var i = 0; i < gridSize*gridSize; i++) {
 		this.free[i] = true;
@@ -111,6 +112,7 @@ function Grid() {
 			newPos = this.getRandomPosition();
 			var lvl = Math.floor(Math.random()*2);
 			this.tiles[newPos] = new Tile(newPos%gridSize, Math.floor(newPos/gridSize), lvl);
+			this.newTile = this.tiles[newPos];
 		};
 	}
 

@@ -58,11 +58,11 @@ function GraphicsManager() {
 				newYs.push(Math.floor(grid.moveMap[i].newPos/gridSize));
 			};
 		};
-		this.translateTiles(gridCells, newXs, newYs);
+		this.translateTiles(gridCells, newXs, newYs, grid.newTile);
 	};
 
 	// dynamically moves a tiles from positions (x,y) to positions (newX, newY)
-	this.translateTiles = function(tiles,newXs,newYs) {
+	this.translateTiles = function(tiles,newXs,newYs, newTile) {
 		var self = this;
 		var dxs = [];
 		var dys = [];
@@ -86,5 +86,8 @@ function GraphicsManager() {
 				clearInterval(id);
 			c++;
 		}, 1);
+		//add the new tile, if there is one
+		if(newTile)
+			this.iso.add(this.makeTile3D(newTile),progression[newTile.level]);
 	};
 };
