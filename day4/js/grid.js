@@ -89,12 +89,20 @@ function Grid() {
 		}
 	}
 
+	this.generateTile = function() {
+		var pos = this.getRandomPosition();
+		var lvl = Math.floor(Math.random()*2);
+		this.newTile = new Tile(pos%gridSize, Math.floor(pos/gridSize), lvl);
+		this.tiles[pos] = this.newTile;
+	};
+
 	// returns a new grid with an updated state
 	this.update = function(dir) {
 		var newPos;
 		var tmp;
 		var update = [];
 		this.moveMap = [];
+		this.newTile = null;
 		for (var i = this.tiles.length; i >= 0; i--) {
 			if(this.tiles[i]) {
 				newPos = this.getMovePosition(i,dir);
@@ -108,12 +116,8 @@ function Grid() {
 		this.tiles = update;
 		this.refreshFree();
 		//add a random tile for next turn if state changed
-		if(!arrayEquals(this.tiles, this.previousState)) {
-			newPos = this.getRandomPosition();
-			var lvl = Math.floor(Math.random()*2);
-			this.tiles[newPos] = new Tile(newPos%gridSize, Math.floor(newPos/gridSize), lvl);
-			this.newTile = this.tiles[newPos];
-		};
+		if(!arrayEquals(this.tiles, this.previousState))
+			this.generateTile();
 	}
 
 	//helper method, checks if two grid states are identical

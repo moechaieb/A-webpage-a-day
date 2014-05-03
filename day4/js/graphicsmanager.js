@@ -82,12 +82,13 @@ function GraphicsManager() {
 				dxs[i] += (newXs[i]-(tiles[i].index%gridSize))/refreshes;
 				dys[i] += (newYs[i]-(Math.floor(tiles[i].index/gridSize)))/refreshes;
 			};
-			if(c == refreshes*3)
+			if(c == refreshes*3){
+				if(newTile)
+					self.iso.add(self.makeTile3D(newTile),progression[newTile.level]);
 				clearInterval(id);
+			}
 			c++;
 		}, 1);
 		//add the new tile, if there is one
-		if(newTile)
-			this.iso.add(this.makeTile3D(newTile),progression[newTile.level]);
 	};
 };
