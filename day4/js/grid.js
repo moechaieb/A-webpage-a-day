@@ -89,6 +89,7 @@ function Grid() {
 		}
 	}
 
+	//generates a new tile at a random position and adds it to the grid
 	this.generateTile = function() {
 		var pos = this.getRandomPosition();
 		var lvl = Math.floor(Math.random()*2);
@@ -96,9 +97,14 @@ function Grid() {
 		this.tiles[pos] = this.newTile;
 	};
 
+	this.getMergeTarget = function(pos, dir) {
+
+	};
+
 	// returns a new grid with an updated state
 	this.update = function(dir) {
 		var newPos;
+		var mergeTarget;
 		var tmp;
 		var update = [];
 		this.moveMap = [];
@@ -106,9 +112,12 @@ function Grid() {
 		for (var i = this.tiles.length; i >= 0; i--) {
 			if(this.tiles[i]) {
 				newPos = this.getMovePosition(i,dir);
+				mergeTarget = this.getMergeTarget(i, dir);
 				//moving the tile here
 				update[newPos] = this.tiles[i];
 				//////////////////////
+				// I need to update the moveMap to include merges (level increases in that case)
+				// add a new property to objects in moveMap : isMerge
 				this.moveMap.push({oldPos: i, newPos: newPos, level: this.tiles[i].level});
 			};
 		};

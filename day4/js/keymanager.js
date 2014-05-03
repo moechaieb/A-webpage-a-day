@@ -19,6 +19,6 @@ function KeyManager(g, grid) {
 
 	this.trigger = function(n) {
 		this.gameGrid.update(n);
-		this.graphicsManager.updateTiles(this.gameGrid);
+		this.graphicsManager.updateScene(this.gameGrid);
 	};
 }
