@@ -20,5 +20,6 @@ function KeyManager(g, grid) {
 	this.trigger = function(n) {
 		this.gameGrid.update(n);
 		this.graphicsManager.updateScene(this.gameGrid);
+		//console.log(this.gameGrid);
 	};
 }

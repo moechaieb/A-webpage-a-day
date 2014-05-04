@@ -12,9 +12,9 @@ function GraphicsManager() {
 	var squareSide = 3;
 	var gridSize = 4;
 	var thickness = 0.15;
-	var boardcolors = [new Color(32,32,32), new Color(0,0,0)];
-	var progression = [new Color(226,208,169), new Color(120,223,177), new Color(228,125,173), new Color(111,125,173),
-				   	   new Color(111,225,118), new Color(179,238,93), new Color(95,241,124), new Color(0,249,138),
+	var boardcolors = [new Color(32,32,32), new Color(0,0,0)]; (71,63,189)
+	var progression = [new Color(226,208,169), new Color(120,223,177), new Color(58,148,173), new Color(182,98,61),
+				   	   new Color(111,225,118), new Color(71,63,189), new Color(95,241,124), new Color(0,249,138),
 				       new Color(0,249,255), new Color(208,21,139), new Color(95,241,9)];
 
 	this.iso = new Isomer(document.getElementById("game"));
@@ -74,6 +74,11 @@ function GraphicsManager() {
 		var newYs = [];
 		var gridCells = [];
 		var c = 0;
+		if(grid.newTile) {
+			var newTile = this.makeTile3D(grid.newTile);
+			var dn = 0;
+			console.log("New tile is at position ("+grid.newTile.x+","+grid.newTile.y+")");
+		}
 		for (var i = 0; i < grid.tiles.length; i++) {
 			if(grid.moveMap[i]) {
 				gridCells.push({index: grid.moveMap[i].oldPos, lvl : grid.moveMap[i].level});
@@ -92,9 +97,14 @@ function GraphicsManager() {
 				dxs[i] += (newXs[i]-(gridCells[i].index%gridSize))/refreshes;
 				dys[i] += (newYs[i]-(Math.floor(gridCells[i].index/gridSize)))/refreshes;
 			};
+			if(grid.newTile) {
+				self.iso.add(newTile.translate(0,0,2-2*dn), progression[grid.newTile.level]);
+				dn += 1/(refreshes*3);
+			}
 			if(c == refreshes*3){
-				if(grid.newTile)
-				  	self.drawNewTile(grid);
+				// for (var i = 0; i < gridCells.length; i++) {
+				// 	self.iso.add(tile3Ds[i].translate(dxs[i],dys[i],0), progression[gridCells[i].lvl]);
+				// };
 				clearInterval(id);
 			};
 			c++;

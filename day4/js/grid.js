@@ -97,8 +97,37 @@ function Grid() {
 		this.tiles[pos] = this.newTile;
 	};
 
+	/*
+		Returns null if the 
+	*/
 	this.getMergeTarget = function(pos, dir) {
-
+		switch(dir) {
+			case 0 : //case up
+				for (var i = pos+gridSize; i < gridSize*gridSize; i+=gridSize) {
+					if(this.tiles[i] && this.tiles[i].level == this.tiles[pos].level)
+						return i;
+				};
+				break;
+			case 1 : //case right
+				for (var i = pos+1; i < Math.ceil((pos+0.1)/gridSize)*gridSize; i++) {
+					if(this.tiles[i] && this.tiles[i].level == this.tiles[pos].level)
+						return i;
+				};
+				break;
+			case 2 : //case down
+				for (var i = pos-gridSize; i >= 0; i-=gridSize) {
+					if(this.tiles[i] && this.tiles[i].level == this.tiles[pos].level)
+						return i;
+				};
+				break;
+			case 3 : //case left
+				for (var i = pos-1; i >= Math.floor(pos/gridSize)*gridSize; i--) {
+					if(this.tiles[i] && this.tiles[i].level == this.tiles[pos].level)
+						return i;
+				};
+				break;
+		}
+		return null;
 	};
 
 	// returns a new grid with an updated state
@@ -107,18 +136,26 @@ function Grid() {
 		var mergeTarget;
 		var tmp;
 		var update = [];
+		var mergeMap = []; // keeps track of whether a merge happened or not in each row/column
 		this.moveMap = [];
 		this.newTile = null;
 		for (var i = this.tiles.length; i >= 0; i--) {
 			if(this.tiles[i]) {
 				newPos = this.getMovePosition(i,dir);
 				mergeTarget = this.getMergeTarget(i, dir);
-				//moving the tile here
-				update[newPos] = this.tiles[i];
+					
 				//////////////////////
-				// I need to update the moveMap to include merges (level increases in that case)
-				// add a new property to objects in moveMap : isMerge
-				this.moveMap.push({oldPos: i, newPos: newPos, level: this.tiles[i].level});
+				// TODO : fix merging, rows/colmns where merges happen are messed up
+				if(mergeTarget && !mergeMap[i%gridSize]) {
+					console.log(i+" merging at "+mergeTarget);
+					mergeMap[i%gridSize] = true;
+					update[mergeTarget] = new Tile(mergeTarget%gridSize, Math.floor(mergeTarget/gridSize), this.tiles[i].level+1);
+					this.moveMap.push({oldPos: i, newPos: mergeTarget, level: (this.tiles[i].level+1), isMerge: true});
+				} else {
+					//console.log(i+" moving to "+newPos);
+					update[newPos] = this.tiles[i];
+					this.moveMap.push({oldPos: i, newPos: newPos, level: this.tiles[i].level, isMerge: false});
+				}
 			};
 		};
 		this.previousState = this.tiles;
