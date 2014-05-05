@@ -6,7 +6,7 @@ Designing a webpage every day
 
 Playing around with GSS and designing the home page of the project.
 
-Edit. no gonna use GSS lol.
+Edit: no gonna use GSS lol.
 
 ## Day 2
 
@@ -18,10 +18,10 @@ Fooled around with [Raphael](http://raphaeljs.com/) a little bit. You can find t
 
 ## Days 4, 5, 6, 7, 8, 9
 
-Exploring the nice [Isomer](http://jdan.github.io/isomer/) library. Decided to build a remake of the 2048, with Isometric graphics: find it at http://themoechaieb.com/A-webpage-a-day/day4/index.html.
+Exploring the nice [Isomer](http://jdan.github.io/isomer/) library. Decided to build a remake of [2048, with Isometric graphics](http://themoechaieb.com/Isometric-2048/index.html).
 
-Probably gonna move it to its own repo soon. It's getting real.
+Probably gonna move it to [its own repo] soon. It's getting real.
 
 ## Day 10
 
-Coming tomorrow!
+Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/day10/index.html), using jQuery.
