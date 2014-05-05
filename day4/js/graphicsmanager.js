@@ -13,7 +13,7 @@ function GraphicsManager() {
 	var gridSize = 4;
 	var thickness = 0.15;
 	var boardcolors = [new Color(32,32,32), new Color(0,0,0)]; (71,63,189)
-	var progression = [new Color(226,208,169), new Color(120,223,177), new Color(58,148,173), new Color(182,98,61),
+	var progression = [new Color(255,255,255), new Color(221,178,152), new Color(205,115,104), new Color(255,84,63),
 				   	   new Color(111,225,118), new Color(71,63,189), new Color(95,241,124), new Color(0,249,138),
 				       new Color(0,249,255), new Color(208,21,139), new Color(95,241,9)];
 
@@ -98,7 +98,7 @@ function GraphicsManager() {
 				dys[i] += (newYs[i]-(Math.floor(gridCells[i].index/gridSize)))/refreshes;
 			};
 			if(grid.newTile) {
-				self.iso.add(newTile.translate(0,0,2-2*dn), progression[grid.newTile.level]);
+				self.iso.add(newTile.translate(0,0,3-3*dn), progression[grid.newTile.level]);
 				dn += 1/(refreshes*3);
 			}
 			if(c == refreshes*3){
