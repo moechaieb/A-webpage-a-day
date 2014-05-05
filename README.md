@@ -20,7 +20,7 @@ Fooled around with [Raphael](http://raphaeljs.com/) a little bit. You can find t
 
 Exploring the nice [Isomer](http://jdan.github.io/isomer/) library. Decided to build a remake of [2048, with Isometric graphics](http://themoechaieb.com/Isometric-2048/index.html).
 
-Probably gonna move it to [its own repo] soon. It's getting real.
+Probably gonna move it to [its own repo](https://github.com/mac-adam-chaieb/Isometric-2048/) soon. It's getting real.
 
 ## Day 10
 
