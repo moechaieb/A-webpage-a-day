@@ -1,14 +1,18 @@
 body {
 	display: none;
 	margin: 0px 15% 0 15%;
-	padding-top:20px;
 	font-family: "Source Sans Pro";
 }
 
-h1 {
+.main {
+	padding-bottom: 50px;
+}
+
+header {
 	font-size: 40px;
 	font-weight: lighter;
 	padding: 3px;
+	margin-top: 5px;
 	border-bottom: 1px gray solid;
 }
 
