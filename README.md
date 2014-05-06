@@ -6,7 +6,7 @@ Designing a webpage every day
 
 Playing around with GSS and designing the home page of the project.
 
-Edit: no gonna use GSS lol.
+Edit: not gonna use GSS lol.
 
 ## Day 2
 
@@ -25,3 +25,7 @@ Probably gonna move it to [its own repo](https://github.com/mac-adam-chaieb/Isom
 ## Day 10
 
 Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/day10/index.html), using jQuery.
+
+## Day 11
+
+Coming tomorrow!
