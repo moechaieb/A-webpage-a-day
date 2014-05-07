@@ -69,6 +69,11 @@ header {
 	width: 300px;
 }
 
+.thanks {
+	width: 100%;
+	text-align: center;
+}
+
 footer {
 	position: fixed;
 	background-color: white;
