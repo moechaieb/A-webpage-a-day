@@ -1,0 +1,34 @@
+/*****************************************************
+*	Designed and programmed by Mohamed Adam Chaieb.
+*****************************************************/
+
+body {
+	width: 70%;
+	margin: 0 15% 50px 15%;
+	background-color: #fff;
+	color: #222;
+	display: block;
+}
+
+header {
+
+}
+
+.menu {
+
+}
+
+p {
+	font-family: 'Merriweather';
+}
+
+footer {
+	position: fixed;
+	background-color: white;
+	bottom: 0;
+	width: 70%;
+	height: 40px;
+	border-top: 1px gray solid;
+	padding-left: 10px;
+	line-height: 40px;
+}
