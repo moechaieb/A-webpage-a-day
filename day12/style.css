@@ -3,30 +3,77 @@
 *****************************************************/
 
 body {
-	width: 70%;
-	margin: 0 15% 50px 15%;
+	width: 60%;
+	margin: 0 20% 50px 20%;
 	background-color: #fff;
-	color: #222;
+	color: #555;
 	display: block;
+	font-family: 'Source Sans Pro';
 }
 
 header {
-
+	font-size: 40px;
+	font-weight: lighter;
+	padding: 3px;
+	margin-top: 5px;
+	border-bottom: 1px #ccc solid;
 }
 
 .menu {
-
+	display: block;
+	padding: 10px 0 10px 0;
+	border-bottom: 1px #ccc solid;
 }
 
-p {
+.menu a {
+	display: inline-block;
+	width: 14%;
+	text-align: center;
+	padding: 0 5% 0 5%;
+	margin: 0;
+	color: #555;
+	text-decoration: none;
+}
+
+.post {
+	margin: 10px 0 60px 0;
+}
+
+.post-header .date {
+	font-family: 'Source Sans Pro';
+	float: right;
+	font-size: 0.9em;
+}
+
+.post-header h1 {
+	font-weight: lighter;
+	color: #222;
+}
+
+.post p {
 	font-family: 'Merriweather';
+	font-size: 1em;
+	text-align: justify;
+}
+
+.post .center {
+	display: block;
+	margin: 0 auto 0 auto;
+}
+
+.post .wrap {
+	display: block;
+	margin: 10px;
+	float: right;
+	height: 300px;
+	width: 300px;
 }
 
 footer {
 	position: fixed;
 	background-color: white;
 	bottom: 0;
-	width: 70%;
+	width: 60%;
 	height: 40px;
 	border-top: 1px gray solid;
 	padding-left: 10px;

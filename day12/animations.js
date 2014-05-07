@@ -4,8 +4,8 @@
 
 $(document).ready(function() {
 	$(".menu").hover(function() {
-
+		console.log("Hover in");
 	}, function() {
-
+		console.log("Hover out");
 	});
 });
