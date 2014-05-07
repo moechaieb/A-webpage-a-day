@@ -28,4 +28,8 @@ Took two days off.
 
 ## Day 12
 
-Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/day10/index.html), using jQuery.
+Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/day12/index.html).
+
+## Day 13
+
+Coming tomorrow!
