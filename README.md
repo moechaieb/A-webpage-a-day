@@ -22,10 +22,10 @@ Exploring the nice [Isomer](http://jdan.github.io/isomer/) library. Decided to b
 
 Probably gonna move it to [its own repo](https://github.com/mac-adam-chaieb/Isometric-2048/) soon. It's getting real.
 
-## Day 10
+## Days 10, 11
+
+Took two days off.
+
+## Day 12
 
 Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/day10/index.html), using jQuery.
-
-## Day 11
-
-Coming tomorrow!
