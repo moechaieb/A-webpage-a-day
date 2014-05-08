@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<meta name="author" content="Mohamed Adam Chaieb"/>
+		<link rel="stylesheet" type="text/css" href="./style.css"></link>
+		<link rel="stylesheet" type="text/css" href="./onepage-scroll/onepage-scroll.css">
+		<title>Seasons</title>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="./onepage-scroll/jquery.onepage-scroll.js"></script>
+		<script src=""></script>
+		<script>
+			$(document).ready(function() {
+				$(".main").onepage_scroll({
+   					sectionContainer: "section",     
+  					easing: "ease",
+   					animationTime: 1000,  
+   					pagination: true,               
+   					updateURL: false,              
+   					beforeMove: function(index) {},  
+   					afterMove: function(index) {},
+ 					loop: false,
+  					keyboard: true,
+   					responsiveFallback: false
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="main">
+			<section class="intro">
+				<p>Intro</p>
+			</section>
+			<section class="winter">
+				<p>Winter</p>
+			</section>
+			<section class="spring">
+				Spring
+			</section>
+			<section class="summer">
+				Summer
+			</section>
+			<section class="fall">
+				Fall
+			</section>
+		</div>
+	</body>
+</html>

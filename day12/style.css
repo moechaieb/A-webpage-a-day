@@ -63,7 +63,7 @@ header {
 
 .post .wrap {
 	display: block;
-	margin: 10px;
+	margin: 0 10px 0 10px;
 	float: right;
 	height: 300px;
 	width: 300px;
