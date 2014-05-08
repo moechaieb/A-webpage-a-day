@@ -1,4 +1,4 @@
-# [A-webpage-a-day](http://themoechaieb.com/A-webpage-a-day/index.html)
+# [A webpage, a day](http://themoechaieb.com/A-webpage-a-day/index.html)
 
 Designing a webpage every day
 
