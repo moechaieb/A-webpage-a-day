@@ -32,4 +32,8 @@ Building [a minimal blogging template](http://themoechaieb.com/A-webpage-a-day/d
 
 ## Day 13
 
+Using the [one page scroll plugin](http://www.thepetedesign.com/demos/onepage_scroll_demo.html) to make a slide-show page. You can find it [here](http://themoechaieb.com/A-webpage-a-day/day13/index.html).
+
+## Day 14
+
 Coming tomorrow!
