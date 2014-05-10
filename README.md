@@ -36,4 +36,8 @@ Using the [one page scroll plugin](http://www.thepetedesign.com/demos/onepage_sc
 
 ## Day 14
 
+Re-designed my resume that you can find on my website. I used LibreOffice Writer for the first time.
+
+## Day 15
+
 Coming tomorrow!
