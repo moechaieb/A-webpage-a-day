@@ -2,7 +2,6 @@ body {
 	display: none;
 	margin: 0px 15% 0 15%;
 	font-family: "Source Sans Pro";
-	font-weight: bold;
 }
 
 .main {
@@ -25,7 +24,6 @@ header {
 	height: 100px;
 	text-align: center;
 	padding-top: 20px;
-	font-weight: normal;
 }
 
 .webpages {
