@@ -17,8 +17,12 @@ function init() {
 	elements.push($('#fact8'));
 	elements.push($('#fact9'));
 	elements.push($('#fact10'));
-	for (var i = 0; i < elements.length; i++)
+	for (var i = 0; i < elements.length; i++) {
 		p.add(elements[i]);
+		elements[i].css('margin-left', '10%');
+		elements[i].css('width', '80%');
+		elements[i].css('text-align', 'justify');
+	}
 };
 
 /*
@@ -35,17 +39,14 @@ function nextFact() {
 	else if(coin == 2)
 		p[nextName].bottom();
 	else p[nextName].left();
-	elements[next].css('margin-top', '30%');
-	elements[next].css('margin-left', '10%');
-	elements[next].css('width', '80%');
-	console.log("Next fact, mate");
+	console.log(nextName);
 };
 
 $(document).ready(function() {
 	//set up the properties of parallax
 	p.background = $("body");
-	p.scaling = 0.9;
-	p.speed = 600;
+	p.scaling = 0.25;
+	p.speed = 500;
 
 	//set up key binding
 	$(document).keydown(function(e) {
