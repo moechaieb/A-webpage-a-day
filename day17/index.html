@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>Piet</title>
+		<script src="raphael.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+	<header>Piet</header>
+	<div id="canvas">
+		<script>
+			var paper = Raphael("canvas", 600, 600);
+			var palette = {blue: '#0000ff', yellow:'#ffff00', red:'#ff0000', white:'#ffffff', black: '#000000'};
+			var selectors;
+			var currentColor = palette.blue;
+
+			var hoverAnimation = Raphael.animation({"stroke-opacity": 1}, 250);
+
+			//add the selectors to the canvas
+			//blue
+			paper.circle(100,40, 25)
+			.attr("stroke-width", 5)
+			.attr("stroke", palette.white)
+			.attr("fill", palette.blue)
+			.attr("stroke-opacity", 0)
+			.click(function() {
+				currentColor = palette.blue;
+			})
+			.hover(function() {
+				this.animate(Raphael.animation({"stroke-opacity" : 0.5}, 100));
+			}, function () {
+				this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
+			});
+			//red
+			paper.circle(100+133,40, 25)
+			.attr("stroke-width", 5)
+			.attr("stroke", palette.white)
+			.attr("fill", palette.red)
+			.attr("stroke-opacity", 0)
+			.click(function() {
+				currentColor = palette.red;
+			})
+			.hover(function() {
+				this.animate(Raphael.animation({"stroke-opacity" : 0.5}, 100));
+			}, function () {
+				this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
+			});
+			//yellow
+			paper.circle(100+133*2,40, 25)
+			.attr("stroke-width", 5)
+			.attr("stroke", palette.white)
+			.attr("fill", palette.yellow)
+			.attr("stroke-opacity", 0)
+			.click(function() {
+				currentColor = palette.yellow;
+			})
+			.hover(function() {
+				this.animate(Raphael.animation({"stroke-opacity" : 0.5}, 100));
+			}, function () {
+				this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
+			});
+			//white
+			paper.circle(100+3*133,40, 25)
+			.attr("stroke-width", 5)
+			.attr("stroke", palette.white)
+			.attr("fill", palette.white)
+			.attr("stroke-opacity", 0)
+			.click(function() {
+				currentColor = palette.white;
+			})
+			.hover(function() {
+				this.animate(Raphael.animation({"stroke-opacity" : 0.5}, 100));
+			}, function () {
+				this.animate(Raphael.animation({"stroke-opacity" : 0}, 100));
+			});
+
+			//draw the canvas
+			paper.rect(50, 100, 500, 500)
+			.attr("fill", palette.white)
+			.attr("stroke-width", 2)
+			.attr("stroke", palette.black);
+		</script>
+	</div>
+	<h1>A homage to Piet Mondrian</h1>
+	<p>
+		Dutch painter, theorist and draughtsman. His work marks the transition at the start of the 20th century from the Hague school and Symbolism to Neo-Impressionism and Cubism. His key position within the international avant-garde is determined by works produced after 1920. He set out his theory in the periodical of De Stijl, in a series of articles that were summarized in a separate booklet published in Paris in 1920 under the title Le Neo-plasticisme (see Neo-plasticism) by Leonce Rosenberg. The essence of Mondrian's ideas is that painting, composed of the most fundamental aspects of line and colour, must set an example to the other arts for achieving a society in which art as such has no place but belongs instead to the total realization of 'beauty'. The representation of the universal, dynamic pulse of life, also expressed in modern jazz and the metropolis, was Mondrian's point of departure. Even in his lifetime he was regarded as the founder of the most modern art. His artistic integrity caused him to be honoured as a classical master by artists who were aligned with entirely different styles, as well as by musicians and architects. He was able to make a living from the sale of his works in the Netherlands, Germany, Switzerland, England and the USA.
+	</p>
+	<p>Source: <a href="http://www.moma.org/collection/artist.php?artist_id=4057">http://www.moma.org/collection/artist.php?artist_id=4057</a></p>
+	<footer>Made with <a href="http://raphaeljs.com/">Raphael</a>, by <a href="http://themoechaieb.com">Mohamed Adam Chaieb</a> as part of the <a href="http://themoechaieb.com/A-webpage-a-day">'A webpage, a day' project</a>.</footer>
+	</body>
+</html>

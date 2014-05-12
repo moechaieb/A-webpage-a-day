@@ -1,0 +1,50 @@
+/*****************************************************
+*	Designed and programmed by Mohamed Adam Chaieb.
+*****************************************************/
+
+body {
+	width: 70%;
+	margin: 1% auto 0 auto;
+	background-color: #f8f6eb;
+	font-family: "Source Sans Pro";
+	color: #56231d;
+}
+
+#canvas {
+	display: block;
+	height:600px;
+	width: 600px;
+	margin:0 auto 0 auto;
+}
+
+header {
+	font-family: 'Pacifico';
+	color: white;
+	font-size: 6em;
+	width:100%;
+	text-align: center;
+	font-weight: normal;
+	text-shadow: 6px 6px #56231d;
+	border-bottom: 1px solid #56231d;
+}
+
+footer {
+	display: block;
+	bottom: 0;
+	background-color: #f8f6eb;
+	height: 40px;
+	width: 100%;
+	border-top: 1px solid #56231d;
+	padding-left: 5px;
+	line-height: 40px;
+}
+
+h1 {
+	font-weight: lighter;
+	padding-left: 10px;
+}
+
+p {
+	padding-left: 10px;
+	text-align: justify;
+}
