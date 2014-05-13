@@ -14,6 +14,7 @@
 			var palette = {blue: '#0000ff', yellow:'#ffff00', red:'#ff0000', white:'#ffffff', black: '#000000'};
 			var selectors;
 			var currentColor = palette.white;
+			var granularity = 50;
 
 			var hoverIn = Raphael.animation({"stroke-opacity" : 0.5}, 100)
 			var hoverOut = Raphael.animation({"stroke-opacity" : 0}, 100)
@@ -76,166 +77,77 @@
 				this.animate(hoverOut);
 			});
 
-			//draw the canvas
-			paper.rect(50, 100, 50, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
+			function partition(x,y,w,h,v) {
+				//console.log("Partitioning at ("+x+","+y+"), width: "+w+"and height: "+h);
+				if(w >= granularity && h >= granularity) {
+					var random = Math.floor(Math.random()*2);
+					if(v) {
+						random = Math.floor(Math.random()*(w/100))*granularity+granularity;
+						draw(x,y,random,h,v);
+						partition(x+random,y, w-random, h, false);
+					} else {
+						random = Math.floor(Math.random()*(h/100))*granularity+granularity;
+						draw(x,y,w,random, v);
+						partition(x,y+random,w,h-random, true);
+					}
+				}
+			}
 
-			paper.rect(100, 100, 300, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
+			function draw(x,y,w,h,v) {
+				var lengths;
+				var d;
+				if(v) {
+					lengths = lengthPartition(h);
+					d = y;
+					for (var i = 0; i < lengths.length; i++) {
+						paper.rect(x, d, w, lengths[i])
+						.attr("fill", palette.white)
+						.attr("stroke-width", 3)
+						.attr("stroke", palette.black)
+						.click(function() {
+							this.animate(Raphael.animation({"fill" : currentColor}, 500));
+						});
+						d += lengths[i];
+					};
+					//draw a bunch of rectangles, stacked vertically
+					
+				} else {
+					lengths = lengthPartition(w);
+					d = x;
+					for (var i = 0; i < lengths.length; i++) {
+						paper.rect(d, y, lengths[i], h)
+						.attr("fill", palette.white)
+						.attr("stroke-width", 3)
+						.attr("stroke", palette.black)
+						.click(function() {
+							this.animate(Raphael.animation({"fill" : currentColor}, 500));
+						});
+						d += lengths[i];
+					};
+					//draw a bunch of rectangles, stacked horizontally
+				}
+			};
 
-			paper.rect(400, 100, 150, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
+			function lengthPartition(l) {
+				console.log("Partitioning a length of "+l);
+				var n = Math.floor(Math.random()*(l/granularity))+1;
+				var lengths = [];
+				var d = 0;
+				var length;
+				for (var i = 1; i <= n; i++) {
+					if(i == n || (l-d) <= granularity) {
+						lengths.push(l-d);
+						break;
+					}
+					length = Math.floor(Math.random()*((l-d)/granularity))*granularity+granularity;
+					d += length;
+					lengths.push(length);
+				};
+				console.log(lengths);
+				return lengths;
+			};
 
-			paper.rect(50, 150, 100, 150)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(150, 150, 250, 250)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(400, 150, 150, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(400, 200, 75, 100)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(475, 200, 75, 100)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(400, 300, 150, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(400, 350, 150, 150)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(400, 500, 150, 100)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(50, 300, 100, 200)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(50, 500, 100, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(50, 550, 200, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(150, 400, 75, 75)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(150, 475, 75, 75)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(250, 550, 150, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(225, 400, 125, 150)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(350, 400, 50, 50)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
-
-			paper.rect(350, 450, 50, 100)
-			.attr("fill", palette.white)
-			.attr("stroke-width", 3)
-			.attr("stroke", palette.black)
-			.click(function() {
-				this.animate(Raphael.animation({"fill" : currentColor}, 500));
-			});
+			partition(50,100,500,500, true);
 		</script>
 	</div>
 	<h1>A homage to Piet Mondrian</h1>
