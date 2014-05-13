@@ -77,8 +77,10 @@
 				this.animate(hoverOut);
 			});
 
+			/*
+				Partitions the rectangle into sub-rectangles.
+			*/
 			function partition(x,y,w,h,v) {
-				//console.log("Partitioning at ("+x+","+y+"), width: "+w+"and height: "+h);
 				if(w >= granularity && h >= granularity) {
 					var random = Math.floor(Math.random()*2);
 					if(v) {
@@ -93,6 +95,9 @@
 				}
 			}
 
+			/*
+				Draws a vertical or horizontal bar of rectangles
+			*/	
 			function draw(x,y,w,h,v) {
 				var lengths;
 				var d;
@@ -128,8 +133,10 @@
 				}
 			};
 
+			/*
+				Returns a random partition of the given length
+			*/
 			function lengthPartition(l) {
-				console.log("Partitioning a length of "+l);
 				var n = Math.floor(Math.random()*(l/granularity))+1;
 				var lengths = [];
 				var d = 0;
@@ -143,7 +150,6 @@
 					d += length;
 					lengths.push(length);
 				};
-				console.log(lengths);
 				return lengths;
 			};
 
