@@ -86,11 +86,15 @@
 					if(v) {
 						random = Math.floor(Math.random()*(w/100))*granularity+granularity;
 						draw(x,y,random,h,v);
-						partition(x+random,y, w-random, h, false);
+						if(Math.floor(Math.random()*2) == 0)
+							partition(x+random,y, w-random, h, false);
+						else partition(x+random,y, w-random, h, true);
 					} else {
 						random = Math.floor(Math.random()*(h/100))*granularity+granularity;
 						draw(x,y,w,random, v);
-						partition(x,y+random,w,h-random, true);
+						if(Math.floor(Math.random()*2) == 0)
+							partition(x,y+random,w,h-random, true);
+						else partition(x,y+random,w,h-random, false);
 					}
 				}
 			}
@@ -153,7 +157,7 @@
 				return lengths;
 			};
 
-			partition(50,100,500,500, true);
+			partition(50,100,500,500, false);
 		</script>
 	</div>
 	<h1>A homage to Piet Mondrian</h1>
