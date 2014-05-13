@@ -1,0 +1,60 @@
+/*****************************************************
+*	Designed and programmed by Mohamed Adam Chaieb.
+*****************************************************/
+
+body {
+	width: 600px;
+	margin: 1% auto 0 auto;
+	background-color: #f8f6eb;
+	font-family: "Source Sans Pro";
+	color: #56231d;
+}
+
+.canvas {
+	display: block;
+	width: 600px;
+	height: 500px;
+	position: absolute;
+	top: 15%;
+}
+
+.canvas img {
+	display: none;
+	position: relative;
+	width: 600px;
+}
+
+.canvas h1 {
+	display: none;
+	position: relative;
+	font-family: 'League Script';
+	font-size: 3em;
+	font-weight: bolder;
+	margin-bottom: 40px;
+	top: 0;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	background-color: #f8f6eb;
+	height: 40px;
+	width: 600px;
+	border-top: 1px solid #56231d;
+	padding-left: 5px;
+	line-height: 40px;
+}
+
+h1 {
+	display: block;
+	font-weight: lighter;
+	position: absolute;
+	width: 600px;
+	top: 30%;
+	text-align: center;
+}
+
+p {
+	padding-left: 10px;
+	text-align: justify;
+}
