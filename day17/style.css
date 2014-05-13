@@ -3,7 +3,7 @@
 *****************************************************/
 
 body {
-	width: 70%;
+	width: 600px;
 	margin: 1% auto 0 auto;
 	background-color: #f8f6eb;
 	font-family: "Source Sans Pro";
@@ -14,18 +14,16 @@ body {
 	display: block;
 	height:600px;
 	width: 600px;
-	margin:0 auto 0 auto;
+	margin:0 auto 25px auto;
 }
 
 header {
 	font-family: 'Pacifico';
-	color: white;
+	color: #56231d;
 	font-size: 6em;
 	width:100%;
 	text-align: center;
 	font-weight: normal;
-	text-shadow: 6px 6px #56231d;
-	border-bottom: 1px solid #56231d;
 }
 
 footer {
