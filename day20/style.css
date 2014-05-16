@@ -21,9 +21,30 @@ header {
 
 .all {
 	display: block;
-	background-color: rgb(0,0,0);
 	width: 100%;
-	height: 100%;
+	height: 91%;
+}
+
+.rgb {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 50px;
+	width: 260px;
+	margin-top: -25px;
+	margin-left: -130px;
+	color: white;
+	font-size: 1.5em; 
+}
+
+.instruction {
+	position: absolute;
+	top: 50%;
+	color: white;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	font-size: 2em;
 }
 
 footer {
@@ -32,7 +53,7 @@ footer {
 	width: 100%;
 	background-color: #444;
 	color: white;
-	height: 40px;
+	height: 4%;
 	border-top: 2px solid #888;
 	padding-left: 5px;
 	line-height: 40px;
