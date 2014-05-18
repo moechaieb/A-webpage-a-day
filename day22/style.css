@@ -3,17 +3,60 @@
 *****************************************************/
 
 body {
+	background-color: #c8695c;
+	color: #cbcd62;
+	font-family: 'Poiret One';
+}
 
+header {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -85px;
+	margin-left: -300px;
+	font-family: 'Bangers';
+	height: 170px;
+	width: 600px;
+	text-align: center;
+	font-size: 0em;
+	text-shadow: 4px 4px #ca9c5f, 7px 7px #4bb662;
+	cursor: default;
+}
+
+.slideshow {
+	display: none;
+	position: relative;
+	width: 600px;
+	height: 800px;
+	left: 50%;
+	top: 180px;
+	margin-left: -300px;
+}
+
+.slideshow img {
+	position: relative;
+	left: 50%;
+	margin-left: -250px;
+	width: 500px;
+	height: auto;
 }
 
 footer {
 	position: fixed;
+	font-size: 1.2em;
 	bottom: 0;
-	width: 100%;
-	background-color: #444;
-	color: white;
-	height: 4%;
-	border-top: 2px solid #888;
+	left: 50%;
+	margin-left: -350px;
+	width: 695px;
+	background-color: #c8695c;
+	color: #ca9c5f;
+	height: 40px;
+	border-top: 2px solid #6857c6;
 	padding-left: 5px;
 	line-height: 40px;
+	font-weight: bolder;
+}
+
+footer a {
+	color: #cbcd62;
 }
