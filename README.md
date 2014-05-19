@@ -58,4 +58,24 @@ If you wonder what this is, just google 'Magritte'.
 
 ## Day 19
 
+Made a minimal sample landing page, using jQuery. Find it [here](http://themoechaieb.com/A-webpage-a-day/day19/index.html).
+
+## Day 20
+
+Made a colour generator. Find it [here](http://themoechaieb.com/A-webpage-a-day/day20/index.html).
+
+## Day 21
+
+Woops.
+
+## Day 22
+
+Made a pop-art slideshow. Find it [here](http://themoechaieb.com/A-webpage-a-day/day22/index.html).
+
+## Day 23
+
+Made another, very simple landing page. Used CSS3 for animations, and fooled around with GIMP to modify the background picture. Find it [here](http://themoechaieb.com/A-webpage-a-day/day23/index.html).
+
+## Day 24
+
 Coming tomorrow!
