@@ -1,0 +1,63 @@
+/*****************************************************
+*	Designed and programmed by Mohamed Adam Chaieb.
+*****************************************************/
+
+* {
+	font-weight: lighter;
+	color: white;
+	font-family: "Roboto", sans-serif;
+	cursor: default;
+}
+
+body {
+	background-image: url("./background.jpg");
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 120px;
+	width: 600px;
+	margin-left: -310px;
+	margin-top: -90px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-name: contentExpand;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.content h1 {
+	width: 100%;
+	text-align: center;
+	font-size: 6em;
+	margin: 0;
+	line-height: 120px;
+}
+
+.content h2 {
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	margin: 10px 0 10px 0;
+	opacity: 0;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-name: subtitleFadeIn;
+	-webkit-animation-delay: 3s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes contentExpand {
+	to { height: 180px; }
+}
+
+@-webkit-keyframes subtitleFadeIn {
+	to {
+		opacity: 1;
+	}
+}
